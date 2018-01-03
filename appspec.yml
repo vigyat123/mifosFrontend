@@ -3,6 +3,16 @@ os: linux
 files:
   - source: dist
     destination: /tmp/codedeploy-deployment-staging-area/
+#  For all the files in the /tmp/my-app/my-folder-1 folder except
+#  for my-file-4.txt and my-file-5.txt, (for example,
+#  just my-file-6.txt), owner = operator and mode = 646 (-rw-r--rw-).
+permissions:
+  - object: /tmp/codedeploy-deployment-staging-area/awsscripts/
+    pattern: "**"
+    owner: root
+    mode: 777
+    type:
+      - file
 hooks:
   ApplicationStop:
     - location: dist/awsscripts/stop_application.sh
