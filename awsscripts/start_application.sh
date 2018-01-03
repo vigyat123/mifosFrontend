@@ -73,8 +73,8 @@ http {
     
     # HTTPS server
     server {
-        listen 443 ssl http2 default_server;
-        listen [::]:443 ssl http2 default_server;
+        listen 8443 ssl http2 default_server;
+        listen [::]:8443 ssl http2 default_server;
         server_name  ec2-34-229-84-140.compute-1.amazonaws.com;
         root   /tmp/codedeploy-deployment-staging-area/;
         index  index.html index.htm;
