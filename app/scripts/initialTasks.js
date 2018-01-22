@@ -29,6 +29,10 @@
             if (mainLink.hostname != "") {
                 baseApiUrl = "https://" + mainLink.hostname + (mainLink.port ? ':' + mainLink.port : '');
             }
+            
+            if(mainLink.hostname.indexOf('/fineract-provider/api/v1')>0){
+                baseApiUrl = "https://ec2-34-229-232-200.compute-1.amazonaws.com";
+            }
 
             if (QueryParameters["baseApiUrl"]) {
                 baseApiUrl = QueryParameters["baseApiUrl"];
