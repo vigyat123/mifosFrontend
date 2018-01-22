@@ -82,12 +82,13 @@ http {
         ssl_certificate_key  softcell_openssl_pub.key;
         ssl_session_cache    shared:SSL:1m;
         ssl_session_timeout  5m;
-        ssl_ciphers  HIGH:!aNULL:!MD5;
-        ssl_prefer_server_ciphers  on;
+        ssl_protocols TLSv1.1 TLSv1.2;
+        ssl_ciphers 'ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:DHE-DSS-AES128-GCM-SHA256:kEDH+AESGCM:ECDHE-RSA-AES128-SHA256:ECDHE-ECDSA-AES128-SHA256:ECDHE-RSA-AES128-SHA:ECDHE-ECDSA-AES128-SHA:ECDHE-RSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA384:ECDHE-RSA-AES256-SHA:ECDHE-ECDSA-AES256-SHA:DHE-RSA-AES128-SHA256:DHE-RSA-AES128-SHA:DHE-DSS-AES128-SHA256:DHE-RSA-AES256-SHA256:DHE-DSS-AES256-SHA:DHE-RSA-AES256-SHA:!aNULL:!eNULL:!EXPORT:!DES:!RC4:!3DES:!MD5:!PSK';
+        ssl_prefer_server_ciphers on;
         
 # Try Files Directive needs to be investigated. (Check CFM & VCM Applicaion)
         location /fineract-provider/api/v1 {
-            proxy_pass https://ec2-34-229-232-200.compute-1.amazonaws.com;
+            proxy_redirect https://ec2-34-229-232-200.compute-1.amazonaws.com;
         }
        location = /50x.html {
            root   html;
