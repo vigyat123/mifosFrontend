@@ -2,25 +2,81 @@ version: 0.2
 phases:
   install:
     commands:
+#     - sudo apt-get update 
+#     - sudo apt-get -y dist-upgrade
+#     - sudo apt-cache search ruby
+#     - sudo apt-get install -y ruby-full
+#     - /etc/profile.d/rvm.sh &> /dev/null
+#     - type rvm &> /dev/null
+
+#     - sudo gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+#     - curl -sSL https://get.rvm.io | sudo bash -s stable
+#     - echo "source /etc/profile.d/rvm.sh" >> /etc/bash.bashrc
+#     - /etc/profile.d/rvm.sh &> /dev/null
+      
+#     - if sudo grep -q secure_path /etc/sudoers; then sudo sh -c "echo export rvmsudo_secure_path=1 >> /etc/profile.d/rvm_secure_path.sh" && echo Environment variable installed; fi
+#     - sudo shutdown -r now
+#     - source /usr/local/rvm/scripts/rvm
+#     - rvm install ruby
+#     - rvm --default use ruby
       - npm install -g bower
       - npm install -g grunt-cli
+#     - npm install grunt --save-dev
+#     - grunt --version
+#     - cat Gruntfile.js
+#     - cat package.json
+#     - npm install grunt --save-dev
       - bower install --allow-root
       - npm install --save-dev @angular/cli@latest
-#      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
+      - npm install
+#     - npm install --save-dev load-grunt-tasks
+#     - npm install --save-dev jshint-stylish
+#     - git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+#     - echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+#     - echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+#     - exec $SHELL
+#     - git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+#     - echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+#     - exec $SHELL
+#     - rbenv install 2.5.0
+#     - rbenv global 2.5.0
+#     - apt-get install ruby
+#     - wget http://production.cf.rubygems.org/rubygems/rubygems-1.5.0.tgz
+#     - tar xvf rubygems*
+#     - ruby setup.rb
+#     - apt-get install ruby
+#     - gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+#     - curl -sSL https://get.rvm.io -o rvm.sh
+#     - less rvm.sh
+#     - cat rvm.sh | bash -s stable
+#     - source ~/.rvm/scripts/rvm
+#     - rvm install ruby --default
+#     - wget http://ftp.ruby-lang.org/pub/ruby/2.5/ruby-2.5.0.tar.gz
+#     - tar -xzvf ruby-2.5.0.tar.gz
+#     - ./ruby-2.5.0/configure
+#     - make 
+#     - ruby -v
+      - gem sources -a https://rubygems.org
+      - gem install bundler
+#     - gem install ffi -v '1.9.18'
+      - bundle install      
+     
+# Create a production ready artifact
+    
+#     - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
   pre_build:
     commands:
-#      - tar -cvf angularCodeDependencies.tar $CODEBUILD_SRC_DIR
-#  Base Directory location for Angular FrontEnd Build: /codebuild/output/<srcxxxxxxxxx>/src/<github.com>/<Github-AccountName>/<Repo-Name>
-#  All the Angullar Dependencies will be downloaded in the Base Directory folder. The tar command archives all the files and directories
-      - tar -cvf angularCodeDependencies.tar .
+      - grunt prod
+      - ls -al
+#     - tar -cvf angularCodeDependencies.tar $CODEBUILD_SRC_DIR
+#     - tar -cvf angularCodeDependencies.tar .
 #     - echo Creating dist folder for copying all the angular code as well as dependencies
-      - mkdir dist
-      - tar -xvf angularCodeDependencies.tar -C dist
-      - echo CODEBUILD_SRC_DIR - $CODEBUILD_SRC_DIR
+#     - mkdir dist
+#     - tar -xvf angularCodeDependencies.tar -C dist
 artifacts:
   files:
       - dist/**/*
-      - awsscripts/install_nginx.sh
+      - awsscripts/install_dependencies.sh
       - awsscripts/start_application.sh
       - awsscripts/stop_application.sh
       - awsscripts/aws_codedeploy_config.sh
