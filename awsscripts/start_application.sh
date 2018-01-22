@@ -86,9 +86,9 @@ http {
         ssl_prefer_server_ciphers  on;
         
 # Try Files Directive needs to be investigated. (Check CFM & VCM Applicaion)
-#       location / {
-#            try_files $uri $uri/ /index.html;
-#       }
+        location /fineract-provider/api/v1 {
+            proxy_pass https://ec2-34-229-232-200.compute-1.amazonaws.com;
+        }
        location = /50x.html {
            root   html;
       }
