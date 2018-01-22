@@ -88,7 +88,7 @@ http {
         
 # Try Files Directive needs to be investigated. (Check CFM & VCM Applicaion)
      location /fineract-provider/api/v1 {
-         proxy_redirect https://ec2-34-229-232-200.compute-1.amazonaws.com;
+         proxy_pass https://ec2-34-229-232-200.compute-1.amazonaws.com;
      }
        location = /50x.html {
            root   html;
