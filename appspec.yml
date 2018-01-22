@@ -8,7 +8,7 @@ hooks:
     - location: awsscripts/stop_application.sh
       timeout: 300
   BeforeInstall:
-    - location: awsscripts/install_dependencies.sh
+    - location: awsscripts/install_nginx.sh
       timeout: 300
   ApplicationStart:
     - location: awsscripts/aws_codedeploy_config.sh
