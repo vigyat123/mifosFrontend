@@ -65,7 +65,7 @@ http {
         
         listen 80 default_server;
         listen [::]:80 default_server;
-        server_name ec2-34-229-84-140.compute-1.amazonaws.com;
+        server_name ec2-54-236-182-186.compute-1.amazonaws.com;
         return 302 https://$server_name$request_uri;
                  
     }
@@ -75,7 +75,7 @@ http {
     server {
         listen 8443 ssl http2 default_server;
         listen [::]:8443 ssl http2 default_server;
-        server_name  ec2-34-229-84-140.compute-1.amazonaws.com;
+        server_name  ec2-54-236-182-186.compute-1.amazonaws.com;
         root   /tmp/codedeploy-deployment-staging-area/;
         index  index.html index.htm;
         ssl_certificate      softcell_openssl_ss.crt;
