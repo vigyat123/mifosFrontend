@@ -1,26 +1,16 @@
-version: 0.2
+version: 0.0
 os: linux
 files:
   - source: dist
-    destination: /tmp/codedeploy-deployment-staging-area/
-#  For all the files in the /tmp/my-app/my-folder-1 folder except
-#  for my-file-4.txt and my-file-5.txt, (for example,
-#  just my-file-6.txt), owner = operator and mode = 646 (-rw-r--rw-).
-permissions:
-  - object: /tmp/codedeploy-deployment-staging-area/awsscripts/
-    pattern: "**"
-    owner: root
-    mode: 777
-    type:
-      - file
+    destination: /tmp/codedeploy-deployment-staging-area-angular/
 hooks:
   ApplicationStop:
-    - location: dist/awsscripts/stop_application.sh
+    - location: awsscripts/stop_application.sh
       timeout: 300
   BeforeInstall:
-    - location: dist/awsscripts/install_nginx.sh
+    - location: awsscripts/install_dependencies.sh
       timeout: 300
   ApplicationStart:
-    - location: dist/awsscripts/aws_codedeploy_config.sh
-    - location: dist/awsscripts/start_application.sh
+    - location: awsscripts/aws_codedeploy_config.sh
+    - location: awsscripts/start_application.sh
       timeout: 300
