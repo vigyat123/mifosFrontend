@@ -76,7 +76,7 @@ http {
         listen 8443 ssl http2 default_server;
         listen [::]:8443 ssl http2 default_server;
         server_name  ec2-54-236-182-186.compute-1.amazonaws.com;
-        root   /tmp/codedeploy-deployment-staging-area/;
+        root   /tmp/codedeploy-deployment-staging-area-angular/;
         index  index.html index.htm;
         ssl_certificate      softcell_openssl_ss.crt;
         ssl_certificate_key  softcell_openssl_pub.key;
